@@ -21,7 +21,6 @@ start="$((($(tput lines) - ${lines}) / 2))"
 warning=''
 declare -a correct=()
 declare -a incorrect=()
-declare -a words=('algorithm')
 declare -A steps=(
     #step 1
     [01]='   ' [02]='   ' [03]='   '
@@ -36,7 +35,7 @@ declare -A steps=(
     #step 6
     [51]='\0/' [52]=' | ' [53]='/ \'
 )
-word="${words[$((RANDOM % ${#words[@]}))]}"
+word="$(shuf -n1 <(cat /usr/share/dict/words | grep -E '^[a-z]{4,}$'))"
 
 # Functions
 cleanup() {
